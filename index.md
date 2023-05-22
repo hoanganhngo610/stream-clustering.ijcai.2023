@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Opportunities and Challenges for Online Deep Learning"
-description: Tutorial presented at the European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML-PKDD), 2023, Turin, Italy.
+title: "The State-of-the-Art and Challenges of Data Stream Clustering Algorithms in Practice"
+description: Tutorial presented at the 32<sup>nd</sup> International Joint Conference on Artificial Intelligence, 19<sup>th</sup> - 25<sup>th</sup> August 2023, Macau, S.A.R.
 mathjax: true
 ---
 
@@ -23,9 +23,11 @@ The agenda of the tutorial will be as follows:
 
 # Abstract
 
-Machine learning algorithms have become indispensable in today's world. They support and accelerate the way we make decisions based on the data at hand. This acceleration means that data structures that were valid at a moment could no longer be valid in the future. With these changing data structures, it is necessary to adapt machine learning (ML) systems incrementally to the new data. This is done with the use of online learning or continuous ML technologies. While Deep Learning technologies have shown exceptional performance on predefined datasets, they have not been widely applied to online, streaming and continuous learning. This tutorial illustrates with the frameworks `River` and `deep-river` the opportunities, but also the potential pitfalls for the application of neural networks in online learning environments.
-
-**Keywords**: stream learning, concept drift, data stream mining, incremental modelling, online deep learning, neural networks, decision support
+With significant advantages upon run time, resource usage, and complexity, online machine learning and stream clustering algorithms are playing a critical role in data science. Besides substantial resource advantages, these algorithms achieve a comparable performance to traditional batch machine learning methods. This tutorial will first surveys online machine learning and data stream clustering. With the emergence of fairness and interpretability, we will also discuss certain attempts in inducing a fair and interpretable machine learning model for data streams. We will then put the tutorial into a practical context with `River`, a Python library resulted from a merge between `Creme` and `scikit-multiflow`. We will also illustrate `River` as a go-to platform for online machine learning development by providing a guidance on how to integrate an algorithm with a clear workflow, alongside actual examples of past problems and solutions during the development process.
+    
+Besides, during this tutorial, state-of-the-art algorithms, associated core research approaches, and future directions of data stream clustering will be presented. Truly incremental clustering validity indices will also be mentioned as an important part of the stream clustering process and will be investigated thoroughly. Currently available metrics require the information of all past points, which is impractical for unlimited data streams. `River` is the first package to design and deploy such incremental indices. 
+    
+Last but not least, the tutorial will demonstrate the use of `River` and the associated clustering module in real-world scenarios. From this, we propose methods of clustering configuration, hyper-parameter tuning, applications and settings for benchmarking using real-world problems and datasets. Preliminary benchmarking results will also be provided to showcase the advantages and consistency in the performance of implemented algorithms.
 
 # Motivation
 

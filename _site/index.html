@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
 
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Opportunities and Challenges for Online Deep Learning | Online clustering: algorithms, evaluation, metrics, application and benchmarking using River</title>
+<title>The State-of-the-Art and Challenges of Data Stream Clustering Algorithms in Practice | Online clustering: algorithms, evaluation, metrics, application and benchmarking using River</title>
 <meta name="generator" content="Jekyll v3.9.2" />
-<meta property="og:title" content="Opportunities and Challenges for Online Deep Learning" />
+<meta property="og:title" content="The State-of-the-Art and Challenges of Data Stream Clustering Algorithms in Practice" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Tutorial presented at the European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML-PKDD), 2023, Turin, Italy." />
-<meta property="og:description" content="Tutorial presented at the European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML-PKDD), 2023, Turin, Italy." />
+<meta name="description" content="Tutorial presented at the 32nd International Joint Conference on Artificial Intelligence, 19th - 25th August 2023, Macau, S.A.R." />
+<meta property="og:description" content="Tutorial presented at the 32nd International Joint Conference on Artificial Intelligence, 19th - 25th August 2023, Macau, S.A.R." />
 <link rel="canonical" href="http://localhost:4000/" />
 <meta property="og:url" content="http://localhost:4000/" />
 <meta property="og:site_name" content="Online clustering: algorithms, evaluation, metrics, application and benchmarking using River" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Opportunities and Challenges for Online Deep Learning" />
+<meta property="twitter:title" content="The State-of-the-Art and Challenges of Data Stream Clustering Algorithms in Practice" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"Tutorial presented at the European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML-PKDD), 2023, Turin, Italy.","headline":"Opportunities and Challenges for Online Deep Learning","name":"Online clustering: algorithms, evaluation, metrics, application and benchmarking using River","url":"http://localhost:4000/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","description":"Tutorial presented at the 32nd International Joint Conference on Artificial Intelligence, 19th - 25th August 2023, Macau, S.A.R.","headline":"The State-of-the-Art and Challenges of Data Stream Clustering Algorithms in Practice","name":"Online clustering: algorithms, evaluation, metrics, application and benchmarking using River","url":"http://localhost:4000/"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -25,7 +25,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="stylesheet" href="/assets/css/style.css?v=72c86808d910410b54a3422ca4fac655ff67b5a4">
+    <link rel="stylesheet" href="/assets/css/style.css?v=2e84e4e6a7702028d05f8e644818c6eaed1e8047">
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
 <!-- Setup Google Analytics -->
@@ -63,8 +63,8 @@
     <a id="skip-to-content" href="#content">Skip to the content.</a>
 
     <header class="page-header" role="banner">
-      <h1 class="project-name">Opportunities and Challenges for Online Deep Learning</h1>
-      <h2 class="project-tagline">Tutorial presented at the European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML-PKDD), 2023, Turin, Italy.</h2>
+      <h1 class="project-name">The State-of-the-Art and Challenges of Data Stream Clustering Algorithms in Practice</h1>
+      <h2 class="project-tagline">Tutorial presented at the 32<sup>nd</sup> International Joint Conference on Artificial Intelligence, 19<sup>th</sup> - 25<sup>th</sup> August 2023, Macau, S.A.R.</h2>
       
         <a href="./index.html" class="btn">Homepage</a>
         <a href="./related-materials.html" class="btn">Related materials</a>
@@ -96,9 +96,11 @@
 
 <h1 id="abstract">Abstract</h1>
 
-<p>Machine learning algorithms have become indispensable in today’s world. They support and accelerate the way we make decisions based on the data at hand. This acceleration means that data structures that were valid at a moment could no longer be valid in the future. With these changing data structures, it is necessary to adapt machine learning (ML) systems incrementally to the new data. This is done with the use of online learning or continuous ML technologies. While Deep Learning technologies have shown exceptional performance on predefined datasets, they have not been widely applied to online, streaming and continuous learning. This tutorial illustrates with the frameworks <code class="language-plaintext highlighter-rouge">River</code> and <code class="language-plaintext highlighter-rouge">deep-river</code> the opportunities, but also the potential pitfalls for the application of neural networks in online learning environments.</p>
+<p>With significant advantages upon run time, resource usage, and complexity, online machine learning and stream clustering algorithms are playing a critical role in data science. Besides substantial resource advantages, these algorithms achieve a comparable performance to traditional batch machine learning methods. This tutorial will first surveys online machine learning and data stream clustering. With the emergence of fairness and interpretability, we will also discuss certain attempts in inducing a fair and interpretable machine learning model for data streams. We will then put the tutorial into a practical context with <code class="language-plaintext highlighter-rouge">River</code>, a Python library resulted from a merge between <code class="language-plaintext highlighter-rouge">Creme</code> and <code class="language-plaintext highlighter-rouge">scikit-multiflow</code>. We will also illustrate <code class="language-plaintext highlighter-rouge">River</code> as a go-to platform for online machine learning development by providing a guidance on how to integrate an algorithm with a clear workflow, alongside actual examples of past problems and solutions during the development process.</p>
 
-<p><strong>Keywords</strong>: stream learning, concept drift, data stream mining, incremental modelling, online deep learning, neural networks, decision support</p>
+<p>Besides, during this tutorial, state-of-the-art algorithms, associated core research approaches, and future directions of data stream clustering will be presented. Truly incremental clustering validity indices will also be mentioned as an important part of the stream clustering process and will be investigated thoroughly. Currently available metrics require the information of all past points, which is impractical for unlimited data streams. <code class="language-plaintext highlighter-rouge">River</code> is the first package to design and deploy such incremental indices.</p>
+
+<p>Last but not least, the tutorial will demonstrate the use of <code class="language-plaintext highlighter-rouge">River</code> and the associated clustering module in real-world scenarios. From this, we propose methods of clustering configuration, hyper-parameter tuning, applications and settings for benchmarking using real-world problems and datasets. Preliminary benchmarking results will also be provided to showcase the advantages and consistency in the performance of implemented algorithms.</p>
 
 <h1 id="motivation">Motivation</h1>
 
@@ -387,7 +389,7 @@ Previous interactions with online machine learning packages/tools, for example <
 
       <footer class="site-footer">
         
-          <span class="site-footer-owner"><a href="https://github.com/hoanganhngo610/deep-river.ecml-pkdd.2023">This tutorial's website</a> is maintained by <a href="https://github.com/hoanganhngo610">Hoang Anh Ngo</a>.</span>
+          <span class="site-footer-owner"><a href="https://github.com/hoanganhngo610/stream-clustering.ijcai.2023">This tutorial's website</a> is maintained by <a href="https://github.com/hoanganhngo610">Hoang Anh Ngo</a>.</span>
         
         <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
       </footer>
