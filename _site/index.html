@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Opportunities and Challenges for Online Deep Learning | Online clustering: algorithms, evaluation, metrics, application and benchmarking using River</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Opportunities and Challenges for Online Deep Learning" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Tutorial presented at the European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML-PKDD), 2023, Turin, Italy." />
+<meta property="og:description" content="Tutorial presented at the European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML-PKDD), 2023, Turin, Italy." />
+<link rel="canonical" href="http://localhost:4000/" />
+<meta property="og:url" content="http://localhost:4000/" />
+<meta property="og:site_name" content="Online clustering: algorithms, evaluation, metrics, application and benchmarking using River" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Opportunities and Challenges for Online Deep Learning" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","description":"Tutorial presented at the European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML-PKDD), 2023, Turin, Italy.","headline":"Opportunities and Challenges for Online Deep Learning","name":"Online clustering: algorithms, evaluation, metrics, application and benchmarking using River","url":"http://localhost:4000/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/assets/css/style.css?v=72c86808d910410b54a3422ca4fac655ff67b5a4">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'true', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        inlineMath: [['$','$']]
+      }
+    });
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> 
+
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">Opportunities and Challenges for Online Deep Learning</h1>
+      <h2 class="project-tagline">Tutorial presented at the European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML-PKDD), 2023, Turin, Italy.</h2>
+      
+        <a href="./index.html" class="btn">Homepage</a>
+        <a href="./related-materials.html" class="btn">Related materials</a>
+      
+      
+        <a href="https://online-ml.github.io/deep-river/" class="btn">deep-river's webpage</a>
+        <a href="https://2023.ecmlpkdd.org/" class="btn">ECML-PKDD 2023</a>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <style type="text/css">
+  .image-left {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    float: right;
+  }
+</style>
+
+<h1 id="practical-information">Practical information</h1>
+
+<p>The agenda of the tutorial will be as follows:</p>
+
+<ul>
+  <li><strong>Place</strong>: Polytechnico di Torino</li>
+  <li><strong>Time</strong>: Friday, September 22<sup>nd</sup> 2023, afternoon (GMT+1)</li>
+</ul>
+
+<h1 id="abstract">Abstract</h1>
+
+<p>Machine learning algorithms have become indispensable in today’s world. They support and accelerate the way we make decisions based on the data at hand. This acceleration means that data structures that were valid at a moment could no longer be valid in the future. With these changing data structures, it is necessary to adapt machine learning (ML) systems incrementally to the new data. This is done with the use of online learning or continuous ML technologies. While Deep Learning technologies have shown exceptional performance on predefined datasets, they have not been widely applied to online, streaming and continuous learning. This tutorial illustrates with the frameworks <code class="language-plaintext highlighter-rouge">River</code> and <code class="language-plaintext highlighter-rouge">deep-river</code> the opportunities, but also the potential pitfalls for the application of neural networks in online learning environments.</p>
+
+<p><strong>Keywords</strong>: stream learning, concept drift, data stream mining, incremental modelling, online deep learning, neural networks, decision support</p>
+
+<h1 id="motivation">Motivation</h1>
+
+<p>Having algorithms at hand that can process data that arrives continuously in the form of data streams is crucial. 
+Online Learning potentially has to deal with real-time data rather than previously known data sets. 
+To deal with the evaluation and application of models on data streams, Bifet et al. [5] defined the online learning requirements as follows:</p>
+<ul>
+  <li>Process an instance at a time, and inspect it (at most) once.</li>
+  <li>Use a limited amount of time to process each instance.</li>
+  <li>Use a limited amount of memory.</li>
+  <li>Be ready to give an answer (e.g. prediction) at any time</li>
+  <li>Adapt to temporal changes.</li>
+</ul>
+
+<p>The following figure depicts how an online learning framework is able to comply with the data stream requirements for supervised learning tasks. 
+The model processes labeled data points $\left(\overrightarrow{x},y\right)$ by updating the model while instead predicting a label $\hat{y}$ for each unlabeled instance $\overrightarrow{x}$. 
+Thus, the model processes each instance from an evolving data stream, updates the underlying model, and is ready to predict at any time.</p>
+
+<p>Even until now, the development of stream algorithms is quite scattered and decentralized. Previously, algorithms were usually self-developed and maintained by the respective authors in various different programming languages, with none of the existing frameworks being widely adopted within the online learning community. Currently, <code class="language-plaintext highlighter-rouge">River</code> is becoming not only a go-to library for online machine learning tasks, but also a pioneer framework for the implementation of any new algorithm within the field.</p>
+
+<figure>
+  <img src="./stream-structure.png" alt="stream-structure" />
+  <figcaption><strong>Figure 1</strong>: Structure of the interaction between data stream and prediction model.</figcaption>
+</figure>
+
+<p>A significant question in the context of the advancement of <code class="language-plaintext highlighter-rouge">River</code> is whether deep learning algorithms, which have been a staple in many batch learning frameworks for some time, can also fulfill the requirements and therefore be applied within online learning environments. To this end, we developed <code class="language-plaintext highlighter-rouge">deep-river</code> which combines the <code class="language-plaintext highlighter-rouge">River</code> API for online learning algorithms and <code class="language-plaintext highlighter-rouge">PyTorch</code> for the flexible development of neural architectures.
+Based on <code class="language-plaintext highlighter-rouge">River</code> and the newly developed framework <code class="language-plaintext highlighter-rouge">deep-river</code>, we present in this tutorial the chances and pitfalls for online deep learning by</p>
+<ul>
+  <li>addressing the online learning requirements,</li>
+  <li>the <code class="language-plaintext highlighter-rouge">River</code> API and discussing their</li>
+  <li>applicability in deep learning architectures.</li>
+</ul>
+
+<p>The tutorial will cover the transition from simple conventional machine learning models to sophisticated neural architectures while considering not only classification, regression and anomaly detection metrics, but also time and memory consumption which are key factors for the throughput of the underlying model.</p>
+
+<h1 id="presenters-bibliography">Presenters’ bibliography</h1>
+
+<p>The following authors will be in-person presenters, i.e., tutors who will attend ECML-PKDD 2023 and present part of the tutorial: <strong>Cedric Kulbach</strong>, <strong>Lucas Cazzonelli</strong>, <strong>Hoang-Anh Ngo</strong>, <strong>Minh-Huong Le-Nguyen</strong> and <strong>Albert Bifet</strong>.</p>
+
+<p><img src="presenter-pics/cedric-kulbach.jpg" alt="drawing" width="220" style="border-radius:60%" class="image-left" /></p>
+
+<p><strong>Cedric Kulbach</strong> studied industrial engineering at the Karlsruhe Institute of Technology (KIT) with a focus on operations research and simulation, and at the Institut Polytechnique de Grenoble (INP) with a focus on product development. He wrote his master’s thesis on the integrated simulation and optimisation of supply networks using the example of Bugatti Automobiles S.A.S. in collaboration with the Institute of Materials Handling and Logistics Systems (IFL), the Institut Polytechnique de Grenoble and Bugatti Automobiles S.A.S..</p>
+
+<p>Since August 2018, he has been working in the Information Process Engineering (IPE) research area and is mainly involved in the topics of automated machine learning, pipeline learning and its possibilities for personalization and data stream learning.</p>
+
+<p><br clear="left" /></p>
+
+<p><img src="presenter-pics/lucas-cazzonelli.jpg" alt="drawing" width="220" style="border-radius:60%" class="image-left" /></p>
+
+<p><strong>Lucas Cazzonelli</strong> is a research assistant at the department of knowledge management of FZI Research Center for Information Technology in Germany. As part of his research, he mainly investigates the adaptation of deep learning approaches to evolving data environments. In this context, he also contributed to the <code class="language-plaintext highlighter-rouge">deep-river</code> online deep learning framework as a co-developer, where his involvement is focused on anomaly detection techniques.</p>
+
+<p><br clear="left" /></p>
+
+<p><img src="presenter-pics/hoang-anh.ngo.jpg" alt="drawing" width="220" style="border-radius:60%" class="image-left" /></p>
+
+<p><strong>Hoang-Anh Ngo</strong> is currently supported by the AI Institute and the School of Computing and Mathematical Sciences, University of Waikato under an External Study Award (ESA) to support his research on <code class="language-plaintext highlighter-rouge">River</code>, the machine learning library in Python for data streams.</p>
+
+<p>His research interests lies in the field of machine learning for evolving data stream, particularly in online clustering and classification algorithms. Previously, he joined the team of IT Specialists in COVID-19 task force, formed by the Ministry of Health of Vietnam as a Epidemiological Modelling Unit head.</p>
+
+<p><br clear="left" /></p>
+
+<p><img src="presenter-pics/minh-huong.le-nguyen.jpg" alt="drawing" width="220" style="border-radius:60%" class="image-left" /></p>
+
+<p><strong>Minh-Huong Le-Nguyen</strong> is a third-year doctoral student at LCTI, Télécom Paris, Institut Polytechnique de Paris in France. Her doctoral research focuses on the applications of machine learning on data streams to implement predictive maintenance in the railway industry. She received her Bachelor’s degree in Computer Science at University Pierre and Marie Curie (France) in 2013, then she graduated from Télécom Paris with a Master’s degree in Data Science in 2019.</p>
+
+<p><br clear="left" /></p>
+
+<p><img src="presenter-pics/albert-bifet.jpg" alt="drawing" width="220" style="border-radius:60%" class="image-left" /></p>
+
+<p><strong>Albert Bifet</strong> is a Professor of AI and the DIrector of the Te Ipu o te Mahara AI Institute  at University of Waikato, and Professor of Big Data at Data, Intelligence and Graphs (DIG) LTCI, Télécom Paris. Problems he investigate are motivated by large scale data, the Internet of Things (IoT), and Big Data Science. He co-leads the open source projects MOA (Massive On-line Analysis), Apache SAMOA (Scalable Advanced Massive Online Analysis) and StreamDM.</p>
+
+<p>Website: <a href="https://albertbifet.com/">https://albertbifet.com/</a></p>
+
+<h1 id="presenters-contact-information">Presenters’ contact information</h1>
+
+<h3 id="cedric-kulbach">Cedric Kulbach</h3>
+
+<p>  FZI Research Center for Information Technology, Karlsruhe, Germany</p>
+
+<p>  Email: <a href="mailto:kulbach@fzi.de">kulbach@fzi.de</a></p>
+
+<h3 id="lucas-cazzonelli">Lucas Cazzonelli</h3>
+
+<p>  FZI Research Center for Information Technology, Karlsruhe, Germany</p>
+
+<p>  Email: <a href="mailto:cazzonelli@fzi.de">cazzonelli@fzi.de</a></p>
+
+<h3 id="hoang-anh-ngo">Hoang-Anh Ngo</h3>
+
+<p>  Artificial Intelligence Institute, University of Waikato, Hamilton, New Zealand</p>
+
+<p>  Email: <a href="mailto:h.a.ngo@sms.ed.ac.uk">h.a.ngo@sms.ed.ac.uk</a></p>
+
+<h3 id="minh-huong-le-nguyen">Minh-Huong Le Nguyen</h3>
+
+<p>  LCTI, Télécom Paris, Institut Polytechnique de Paris, France</p>
+
+<p>  Email: <a href="mailto:minh.lenguyen@telecom-paris.fr">minh.lenguyen@telecom-paris.fr</a></p>
+
+<h3 id="albert-bifet">Albert Bifet</h3>
+
+<p>  Artificial Intelligence Institute, University of Waikato, Hamilton, New Zealand and LCTI, Télécom Paris, Institut Polytechnique de Paris, France</p>
+
+<p>  Email: <a href="mailto:abifet@waikato.ac.nz">abifet@waikato.ac.nz</a></p>
+
+<h1 id="outline">Outline</h1>
+
+<p>The tutorial is held within <strong>4 hours</strong> (with a <strong>30-minute break</strong> between the two sections) and is intended to be a combination between a <strong>lecture-style tutorial</strong> and a <strong>hands-on tutorial</strong>, with a strong emphasis on <strong>practical demonstrations</strong> and <strong>benchmarking</strong>. The detailed schedule and the topics covered within the tutorial are all depicted in section <a href="#detailed-schedule">Detailed schedule</a>.</p>
+
+<p>All material covered within the tutorial, including lecture slides and practical demos, will be publicly available in advance on a dedicated website. Moreover, within the tutorial, these examples will be run in real-time. If the attendees want to work along, a laptop would be necessary.</p>
+
+<p>Last but not least, no specific operating system, software or tool is required apart from a working Python installation with version later than or equal to 3.8. Both <code class="language-plaintext highlighter-rouge">River</code>, <code class="language-plaintext highlighter-rouge">deep-river</code> and their dependencies can easily be installed using the package manager <code class="language-plaintext highlighter-rouge">pip</code>, which we will also be briefly walk through within the tutorial.</p>
+
+<h2 id="detailed-schedule">Detailed schedule</h2>
+
+<p>The schedule of this tutorial can be divided into two parts.</p>
+
+<ul>
+  <li>In the first part, we introduce data stream machine learning as well as the <code class="language-plaintext highlighter-rouge">River</code> framework. This part is depicted in more detail in <a href="#introduction-to-data-stream-online-machine-learning-and-river-labelsubsubsecoutlineriver">the following subsection</a>.</li>
+  <li>In the second part, we present the transition from traditional machine learning on data streams to online deep learning, taking into account the requirements stated in the first part of the tutorial. We depict a detailed description of the second part within <a href="#introduction-to-online-deep-learning-and-deep-river">this section</a>.</li>
+</ul>
+
+<p>In the following, we present a detailed schedule of the Framework.</p>
+
+<ol>
+  <li>Introduction to data stream (online) machine learning and <code class="language-plaintext highlighter-rouge">River</code> (approximately <strong>120 min</strong>):
+    <ol>
+      <li>Why do we need stream machine learning? (<strong>5 min</strong>) What are the differences, advantages and disadvantages of online machine learning compared to traditional machine learning methods? (<strong>10 min</strong>)</li>
+      <li>What are the methods to induce fairness in online machine learning? (<strong>30 min</strong>)</li>
+      <li>How can a data stream machine learning model be interpreted? (<strong>30 min</strong>)</li>
+      <li>A brief introduction to <code class="language-plaintext highlighter-rouge">River</code> (<strong>5 min</strong>):
+        <ul>
+          <li>How was <code class="language-plaintext highlighter-rouge">River</code> created as a merge between <code class="language-plaintext highlighter-rouge">Creme</code> and <code class="language-plaintext highlighter-rouge">scikit-multiflow</code>?</li>
+          <li><code class="language-plaintext highlighter-rouge">River</code>’s design principles</li>
+          <li>Major advantages of <code class="language-plaintext highlighter-rouge">River</code> towards previously available frameworks</li>
+          <li>Updates/improvements throughout each version.</li>
+        </ul>
+      </li>
+      <li>What steps are required to develop/implement a model within <code class="language-plaintext highlighter-rouge">River</code>? (<strong>5 min</strong>)</li>
+      <li>From nowcasting to forecasting in online learning. (<strong>5 min</strong>)</li>
+      <li>Demos and examples of previous problems and solutions during the development progress (<strong>10 min</strong>)</li>
+      <li>Live visualization and benchmarking of stream algorithms and their results in synthetic and real-life scenarios. (<strong>20 min</strong>)</li>
+    </ol>
+  </li>
+  <li>Introduction to online deep learning and <code class="language-plaintext highlighter-rouge">deep-river</code> (approximately <strong>90 min</strong>):l
+    <ol>
+      <li>How do deep learning models follow the online learning Requirements~\ref{rq:online_learning}? (<strong>5 min</strong>)</li>
+      <li>How do we cover all machine learning tasks from <code class="language-plaintext highlighter-rouge">River</code> with deep learning models? (<strong>15 min</strong>)</li>
+      <li>A brief introduction into the deep learning extension and the framework. (<strong>20 min</strong>)
+        <ul>
+          <li>How does <code class="language-plaintext highlighter-rouge">deep-river</code> follow the <code class="language-plaintext highlighter-rouge">River</code> design principles. (<strong>10 min</strong>)</li>
+          <li>How is <code class="language-plaintext highlighter-rouge">PyTorch</code> integrated into the <code class="language-plaintext highlighter-rouge">River</code> API. (<strong>10 min</strong>)</li>
+        </ul>
+      </li>
+      <li>Chances and pitfalls of online deep learning (<strong>50 min</strong>):
+        <ul>
+          <li>To what extent does architecture influence model performance? From nowcasting to forecasting in online deep learning. (<strong>10 min</strong>)</li>
+          <li>How does the integration of <code class="language-plaintext highlighter-rouge">PyTorch</code> influence the models throughput? (<strong>10 min</strong>)</li>
+          <li>Does the usage of GPUs increase the throughput of the deep learning model? (<strong>30 min</strong>)</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<h2 id="introduction-to-data-stream-online-machine-learning-and-river">Introduction to data stream (online) machine learning and <code class="language-plaintext highlighter-rouge">River</code></h2>
+
+<p>We will begin the tutorial by explaining the motivation and necessity of data stream machine learning, which offers a significant advantage compared to traditional machine learning methods when dealing with particularly large or infinite amounts of data with constrained time and resources.</p>
+
+<p>The motivation will lead into the creation of <code class="language-plaintext highlighter-rouge">River</code>, a merge between <code class="language-plaintext highlighter-rouge">Creme</code> and <code class="language-plaintext highlighter-rouge">scikit-multiflow</code>. <code class="language-plaintext highlighter-rouge">River</code> is becoming more and more of a go-to toolkit in the field, with various advantages and many more features offered compared to its competitors. In addition to introducing the fundamental concepts of the framework, we will also provide detailed guidance on how to contribute to <code class="language-plaintext highlighter-rouge">River</code> and teach the participants how to integrate <code class="language-plaintext highlighter-rouge">River</code> into their research.</p>
+
+<p>Last but not least, we will present a comprehensive overview, along with the latest research interests in fairness and interpretability of online machine learning models. 
+Due to the fact that stream machine learning models are designed to handle an infinite amount of information while having to preserve accuracy under concept drifts, this is a much younger yet more challenging and interesting research field compared to that of traditional machine learning methods.</p>
+
+<h2 id="introduction-to-online-deep-learning-and-deep-river">Introduction to online deep learning and <code class="language-plaintext highlighter-rouge">deep-river</code></h2>
+
+<p>This part will be the main part of the tutorial. 
+We will motivate the development of <code class="language-plaintext highlighter-rouge">deep-river</code> by showing how deep learning models follow the online learning requirements and what adaptations need to be made for classification and regression tasks in supervised learning as well as anomaly detection with autoencoders in an unsupervised learning setting.
+An example for such an adaptation is that the usually static architecture of a neural network classifier needs to be adapted to the emergence of previously unseen classes. 
+This is due to the fact that in an online learning scenario the total number of classes may not be known at the time of network initialization.</p>
+
+<p>After stating the conceptual specifics for the use of neural networks on evolving data streams, we will look at the implementation of <code class="language-plaintext highlighter-rouge">deep-river</code> and show how <code class="language-plaintext highlighter-rouge">PyTorch</code> models can be integrated into the <code class="language-plaintext highlighter-rouge">River</code> API. To illustrate the chances and challenges of online deep learning, we will provide a demonstration of the transition from classical machine learning to deep learning models based on an example data set.</p>
+
+<h1 id="target-audience">Target audience</h1>
+
+<p>The target audience of the tutorial includes any researchers and practitioners with interests in machine learning for big data, evolving data streams and IoT applications.</p>
+
+<p>Basic knowledge of traditional- as well as deep- batch machine learning algorithms and frameworks (e.g. <code class="language-plaintext highlighter-rouge">Scikit-learn</code>, <code class="language-plaintext highlighter-rouge">TensorFlow</code>, <code class="language-plaintext highlighter-rouge">PyTorch</code>) would be helpful. 
+Previous interactions with online machine learning packages/tools, for example <code class="language-plaintext highlighter-rouge">MOA</code> (in Java), <code class="language-plaintext highlighter-rouge">stream</code> in <code class="language-plaintext highlighter-rouge">R</code>, <code class="language-plaintext highlighter-rouge">scikit-multiflow</code>, <code class="language-plaintext highlighter-rouge">Creme</code> or <code class="language-plaintext highlighter-rouge">River</code> could also be beneficial but are not required.</p>
+
+<p>For any developer who wants to contribute to <code class="language-plaintext highlighter-rouge">River</code> or <code class="language-plaintext highlighter-rouge">deep-river</code>, or employ either of these two packages within their research work, we recommend a high level of familiarity with version control via <code class="language-plaintext highlighter-rouge">Git</code>, functionalities of <code class="language-plaintext highlighter-rouge">GitHub</code> (e.g. pull requests, issues, a discussion, GitHub Actions) and code formatters in Python (<code class="language-plaintext highlighter-rouge">flake8</code>, <code class="language-plaintext highlighter-rouge">black</code>, <code class="language-plaintext highlighter-rouge">isort</code>, etc.).</p>
+
+<h1 id="prior-offerings">Prior offerings</h1>
+
+<p>Up to date, to the authors’ knowledge, there has been <strong>no</strong> presented tutorial involving either of the following elements:</p>
+
+<ul>
+  <li>A detailed investigation into the problem of fairness and interpretability of online machine learning algorithms in general. This will be the main emphasis in our introduction to data stream machine learning, accounting for approximately <strong>50%</strong> of the first part of the tutorial.</li>
+  <li>
+    <p>In-depth demonstrations of the developing process i.e. on how to develop new algorithms within <code class="language-plaintext highlighter-rouge">River</code>, <code class="language-plaintext highlighter-rouge">deep-river</code> and how actual previous problems and solutions during the process were resolved.</p>
+
+    <p>This will be followed up by a presentation of the development  and maintenance roadmap of the framework, which is one of the most crucial parts of any open-source projects.</p>
+
+    <p>In other words, this tutorial will be more aimed at developers.</p>
+  </li>
+  <li>The topic of online deep learning will be investigated thoroughly, not only as a literature survey but it is also put into practical contexts, using <code class="language-plaintext highlighter-rouge">deep-river</code>. This also serves as the first formal introduction to the software package since its inaugural version in late August 2022.</li>
+</ul>
+
+<p>Previously, there has been only <strong>two</strong> editions of a tutorial briefly that briefly introduced stream machine learning and <code class="language-plaintext highlighter-rouge">River</code>’s related use cases, including:</p>
+
+<ul>
+  <li>First offering:
+    <ul>
+      <li><strong>Title:</strong> Online Clustering: Algorithms, Evaluation, Metrics, Applications and Benchmarking using River.</li>
+      <li><strong>Conference:</strong> The 26th Pacific - Asia Conference on Knowledge Discovery and Data Mining (PAKDD 2022).</li>
+      <li><strong>Time and location:</strong> May 16<sup>th</sup>, 2022, Chengdu, China (presented remotely due to COVID-19 restrictions).</li>
+      <li><strong>Number of participants:</strong> Unknown. Due to the COVID-19 prevention measures and time differences, the tutorial is presented online with a pre-recorded video.</li>
+    </ul>
+  </li>
+  <li>Second offering:
+    <ul>
+      <li><strong>Title:</strong> Online Clustering: Algorithms, Evaluation, Metrics, Applications and Benchmarking.</li>
+      <li><strong>Conference:</strong> The 28th ACM SIGKDD Cofnerence on Knowledge Discovery and Data Mining (KDD ‘22).</li>
+      <li><strong>Type:</strong> Lecture-style tutorial.</li>
+      <li><strong>Content:</strong> Publicly available within <a href="https://hoanganhngo610.github.io/river-clustering.kdd.2022/">the tutorial’s website</a> and <a href="https://dl.acm.org/doi/10.1145/3534678.3542600">the conference’s proceedings</a>. Within the <a href="https://hoanganhngo610.github.io/river-clustering.kdd.2022/related-materials.html">Related materials</a> part of the tutorial’s website, all related information can be found, including presentation slides, demos and source code.</li>
+      <li><strong>Time and location:</strong> August 14<sup>th</sup>, 2022, Washington DC Convention Center, Washington, DC, United States.</li>
+      <li><strong>Number of participants:</strong> Approximately 50 participants.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>However, the proposed tutorial will be of a total difference from the two editions mentioned previously, regarding both the content and level of practical detail. This will also be the <strong>first time/edition</strong> that this tutorial will be presented.</p>
+
+<h1 id="related-materials">Related materials</h1>
+
+<p>For all related materials, including presentation slides, demos, source code, related papers and any other piece of information, please visit <a href="./related-materials.html">this page</a>.</p>
+
+<h1 id="citation">Citation</h1>
+
+<p>TBA</p>
+
+<h1 id="references">References</h1>
+
+<ol>
+  <li>Martin Abadi, Andy Chu, Ian Goodfellow, H. Brendan McMahan, Ilya Mironov, Kunal Talwar, and Li Zhang. Deep Learning with Differential Privacy. In <em>Proceedings of the 2016 ACM SIGSAC Conference on Computer and Communications Security</em>, CCS ’16, pages 308–318, New York, NY, USA, October 2016. Association for Computing Machinery.</li>
+  <li>Rahaf Aljundi, Lucas Caccia, Eugene Belilovsky, Massimo Caccia, Min Lin, Laurent Charlin, and Tinne Tuytelaars. Online Continual Learning with Maximally Interfered Retrieval, October 2019.</li>
+  <li>Rahaf Aljundi, Min Lin, Baptiste Goujaud, and Yoshua Bengio. Gradient based sample selection for online continual learning, October 2019.</li>
+  <li>Atilim Gunes Baydin, Robert Cornish, David Martínez-Rubio, Mark Schmidt, and Frank Wood. Online learning rate adaptation with hyper-gradient descent. In <em>6th international conference on learning representations, ICLR 2018, vancouver, BC, canada, april 30 - may 3, 2018, conference track proceedings</em>. OpenReview.net, 2018. tex.bibsource: dblp computer science bibliography, <a href="https://dblp.org">https://dblp.org</a> tex.biburl: <a href="https://dblp.org/rec/conf/iclr/BaydinCMSW18.bib">https://dblp.org/rec/conf/iclr/BaydinCMSW18.bib</a> tex.timestamp: Thu, 23 Apr 2020 11:53:22 +0200.</li>
+  <li>Albert Bifet, Ricard Gavaldà, Geoff Holmes, and Bernhard Pfahringer. <em>Machine Learning for Data Streams with Practical Examples in MOA</em>. MIT Press, 2018.</li>
+  <li>Nadia Burkart and Marco F. Huber. A Survey on the Explainability of Supervised Machine Learning. <em>Journal of Artificial Intelligence Research</em>, 70:245–317, January 2021.</li>
+  <li>Pietro Buzzega, Matteo Boschini, Angelo Porrello, Davide Abati, and Simone Calderara. Dark Experience for General Continual Learning: A Strong, Simple Baseline, October 2020.</li>
+  <li>Nicholas Carlini and David Wagner. Towards Evaluating the Robustness of Neural Networks. In <em>2017 IEEE Symposium on Security and Privacy (SP)</em>, pages 39–57, May 2017.</li>
+  <li>Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. In <em>Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)</em>, pages 4171–4186, Minneapolis, Minnesota, June 2019. Association for Computational Linguistics.</li>
+  <li>João Gama, Pedro Medas, Gladys Castillo, and Pedro Rodrigues. Learning with drift detection. In Ana L. C. Bazzan and Sofiane Labidi, editors, <em>Advances in Artificial Intelligence – SBIA 2004</em>, pages 286–295, Berlin, Heidelberg, 2004. Springer Berlin Heidelberg.</li>
+  <li>Heitor Murilo Gomes, Jesse Read, and Albert Bifet. Streaming random patches for evolving data stream classification. In <em>2019 IEEE International Conference on Data Mining (ICDM)</em>, pages 240–249, 2019.</li>
+  <li>Heitor Murilo Gomes, Jesse Read, Albert Bifet, Jean Paul Barddal, and João Gama. Machine learning for streaming data: State of the art, challenges, and opportunities. <em>SIGKDD Explor. Newsl.</em>, 21(2):6–22, nov 2019.</li>
+  <li>Max Halford, Geoffrey Bolmier, Raphael Sourty, Robin Vaysse, and Adil Zouitine. creme, a Python library for online machine learning, 2019.</li>
+  <li>Kaiming He, Xinlei Chen, Saining Xie, Yanghao Li, Piotr Dollar, and Ross Girshick. Masked Autoencoders Are Scalable Vision Learners. In <em>2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</em>, pages 15979–15988, New Orleans, LA, USA, June 2022. IEEE.</li>
+  <li>Steven C. H. Hoi, Doyen Sahoo, Jing Lu, and Peilin Zhao. Online Learning: A Comprehensive Survey, October 2018.</li>
+  <li>Kurt Hornik, Maxwell Stinchcombe, and Halbert White. Multilayer feedforward networks are universal approximators. <em>Neural Networks</em>, 2(5):359–366, January 1989.</li>
+  <li>Lakhmi C. Jain, Manjeevan Seera, Chee Peng Lim, and P. Balasubramaniam. A review of online learning in supervised neural networks. <em>Neural Computing and Applications</em>, 25(3-4):491–509, September 2014.</li>
+  <li>James Kirkpatrick, Razvan Pascanu, Neil Rabinowitz, Joel Veness, Guillaume Desjardins, Andrei A. Rusu, Kieran Milan, John Quan, Tiago Ramalho, Agnieszka Grabska-Barwinska, Demis Hassabis, Claudia Clopath, Dharshan Kumaran, and Raia Hadsell. Overcoming catastrophic forgetting in neural networks. <em>Proceedings of the National Academy of Sciences</em>, 114(13):3521–3526, March 2017.</li>
+  <li>Alex Krizhevsky, Ilya Sutskever, and Geoffrey E Hinton. ImageNet Classification with Deep Convolutional Neural Networks. In <em>Advances in Neural Information Processing Systems</em>, volume 25. Curran Associates, Inc., 2012.</li>
+  <li>Zhizhong Li and Derek Hoiem. Learning without Forgetting. <em>IEEE Transactions on Pattern Analysis and Machine Intelligence</em>, 40(12):2935–2947, December 2018.</li>
+  <li>Jesus L Lobo, Javier Del Ser, Albert Bifet, and Nikola Kasabov. Spiking neural networks and online learning: An overview and perspectives. <em>Neural Networks</em>, 121:88–100, 2020. Publisher: Elsevier.</li>
+  <li>Scott Lundberg and Su-In Lee. A Unified Approach to Interpreting Model Predictions, November 2017.</li>
+  <li>Aleksander Madry, Aleksandar Makelov, Ludwig Schmidt, Dimitris Tsipras, and Adrian Vladu. Towards Deep Learning Models Resistant to Adversarial Attacks, September 2019.</li>
+  <li>Michael McCloskey and Neal J. Cohen. Catastrophic Interference in Connectionist Networks: The Sequential Learning Problem. In <em>Psychology of Learning and Motivation</em>, volume 24, pages 109–165. Elsevier, 1989.</li>
+  <li>Jacob Montiel, Jesse Read, Albert Bifet, and Talel Abdessalem. Scikit-multiflow: A multi-output streaming framework. <em>Journal of Machine Learning Research</em>, 19(72):1–5, 2018.</li>
+  <li>Jacob Montiel, Max Halford, Saulo Martiello Mastelini, Geoffrey Bolmier, Raphael Sourty, Robin Vaysse, Adil Zouitine, Heitor Murilo Gomes, Jesse Read, Talel Abdessalem, and Albert Bifet. River: machine learning for streaming data in python. <em>Journal of Machine Learning Research</em>, 22:1–8, April 2021.</li>
+  <li>Jacob Montiel, Hoang-Anh Ngo, Minh-Huong Le-Nguyen, and Albert Bifet. Online clustering: Algorithms, evaluation, metrics, applications and benchmarking. In <em>Proceedings of the 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining</em>, KDD ’22, page 4808–4809, New York, NY, USA, 2022. Association for Computing Machinery.</li>
+  <li>Jordan Pearson and Yoshua Bengio. When AI Goes Wrong, We Won’t Be Able to Ask It Why, July 2016.</li>
+  <li>Anand Rajaraman and Jeffrey David Ullman. <em>Data Mining</em>, page 1–17. Cambridge University Press, 2011.</li>
+  <li>Marco Tulio Ribeiro, Sameer Singh, and Carlos Guestrin. ”Why Should I Trust You?”: Explaining the Predictions of Any Classifier, August 2016.</li>
+  <li>David E. Rumelhart, Geoffrey E. Hinton, and Ronald J. Williams. Learning representations by back-propagating errors. <em>Nature</em>, 323(6088):533–536, October 1986.</li>
+  <li>Doyen Sahoo, Quang Pham, Jing Lu, and Steven C. H. Hoi. Online Deep Learning: Learning Deep Neural Networks on the Fly. In <em>IJCAI Proceedings</em>, pages 2660–2666, Stockholm, Sweden, July 2018. International Joint Conferences on Artificial Intelligence Organization.</li>
+  <li>Sheng Wan and L.E. Banta. Parameter Incremental Learning Algorithm for Neural Networks. IEEE <em>Transactions on Neural Networks</em>, 17(6):1424–1438, November 2006.</li>
+  <li>Jonathan A. Silva, Elaine R. Faria, Rodrigo C. Barros, Eduardo R. Hruschka, Andr ́e C. P. L. F. de Carvalho, and João Gama. Data stream clustering: A survey. <em>ACM Comput. Surv.</em>, 46(1), jul 2013.</li>
+  <li>David Silver, Aja Huang, Chris J. Maddison, Arthur Guez, Laurent Sifre, George van den Driessche, Julian Schrittwieser, Ioannis Antonoglou, Veda Panneershelvam, Marc Lanctot, Sander Dieleman, Dominik Grewe, John Nham, Nal Kalchbrenner, Ilya Sutskever, Timothy Lillicrap, Madeleine Leach, Koray Kavukcuoglu, Thore Graepel, and Demis Hassabis. Mastering the game of Go with deep neural networks and tree search. <em>Nature</em>, 529(7587):484–489, January 2016.</li>
+  <li>Christian Szegedy, Wojciech Zaremba, Ilya Sutskever, Joan Bruna, Dumitru Erhan, Ian Goodfellow, and Rob Fergus. Intriguing properties of neural networks, February 2014.</li>
+  <li>Vladimir Vapnik. <em>The Nature of Statistical Learning Theory</em>. Springer Science &amp; Business Media, November 1999.</li>
+  <li>Pascal Vincent, Hugo Larochelle, Isabelle Lajoie, Yoshua Bengio, and Pierre-Antoine Manzagol. Stacked Denoising Autoencoders: Learning Useful Representations in a Deep Network with a Local Denoising Criterion. <em>Journal of Machine Learning Research</em>, page 38, 2010.</li>
+  <li>Guanyu Zhou, Kihyuk Sohn, and Honglak Lee. Online Incremental Feature Learning with Denoising Autoencoders. In <em>AISTATS Proceedings</em>, 2012.</li>
+</ol>
+
+
+      <footer class="site-footer">
+        
+          <span class="site-footer-owner"><a href="https://github.com/hoanganhngo610/deep-river.ecml-pkdd.2023">This tutorial's website</a> is maintained by <a href="https://github.com/hoanganhngo610">Hoang Anh Ngo</a>.</span>
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>

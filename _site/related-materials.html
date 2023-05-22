@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Related materials | Online clustering: algorithms, evaluation, metrics, application and benchmarking using River</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Related materials" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Including presentation slides, demos, source code, related papers, etc." />
+<meta property="og:description" content="Including presentation slides, demos, source code, related papers, etc." />
+<link rel="canonical" href="http://localhost:4000/related-materials.html" />
+<meta property="og:url" content="http://localhost:4000/related-materials.html" />
+<meta property="og:site_name" content="Online clustering: algorithms, evaluation, metrics, application and benchmarking using River" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Related materials" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Including presentation slides, demos, source code, related papers, etc.","headline":"Related materials","url":"http://localhost:4000/related-materials.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/assets/css/style.css?v=72c86808d910410b54a3422ca4fac655ff67b5a4">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'true', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+
+
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">Related materials</h1>
+      <h2 class="project-tagline">Including presentation slides, demos, source code, related papers, etc.</h2>
+      
+        <a href="./index.html" class="btn">Homepage</a>
+        <a href="./related-materials.html" class="btn">Related materials</a>
+      
+      
+        <a href="https://online-ml.github.io/deep-river/" class="btn">deep-river's webpage</a>
+        <a href="https://2023.ecmlpkdd.org/" class="btn">ECML-PKDD 2023</a>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="general-information-about-river">General information about River</h1>
+
+<p><code class="language-plaintext highlighter-rouge">River</code> is a Python library for online machine learning. With <code class="language-plaintext highlighter-rouge">River</code>, as opposed to the batch setting, we encourage a different approach, which is to continuously learn a stream of data. This would allow any massive dataset to be learned, even when it does not fit in the memory. It has a lot of use cases, ranging from time series forecasting, spam filtering, recommender systems, CTR prediction and IoT applications.</p>
+
+<p>The clustering module of <code class="language-plaintext highlighter-rouge">River</code> is currently the most complete among all open-source projects, with not only the highest number of already-available clustering algorithms, but also with the large number of internal and external metrics that supports online learning contexts.</p>
+
+<p>The currently available clustering algorithms include</p>
+
+<ul>
+  <li>Incremental KMeans</li>
+  <li>CluStream</li>
+  <li>DenStream</li>
+  <li>DBSTREAM</li>
+  <li>STREAMKMeans</li>
+  <li>evoStream</li>
+</ul>
+
+<p>Additionally, with <strong>20</strong> internal validation metrics and <strong>18</strong> external validation metrics, River is currently the package with the highest number of metrics offered for data stream continuous or incremental validation.</p>
+
+<ul>
+  <li>
+    <p><strong>Internal validation metrics</strong>: Cohesion, SSB, SSW, Separation, Silhouette, Ball-Hall, CH, Hartigan, WB, Xie-Beni, Xu, (Root) Mean Squared Standard Deviation, R-Squared, I Index, Davies-Bouldin, Partition Separation, Dunn’s indices 43 and 53, SD Validation Index, and Bayesian Information Criterion.</p>
+  </li>
+  <li>
+    <p><strong>External validation metrics</strong>: Completeness, Homogeneity, VBeta, (Adjusted, Expected, Normalized) Mutual Information, Q0 and Q2, Fowlkes-Mallows, Markedness, Informedness, Matthews Correlation Coefficient, (Adjusted) Rand Index, Purity, Prevalence Threshold, and Sorensen-Dice index.</p>
+  </li>
+</ul>
+
+<p>The viewers may also be interested to visit the repositories of two packages that are merged to become <code class="language-plaintext highlighter-rouge">River</code>, including <code class="language-plaintext highlighter-rouge">scikit-multiflow</code> and <code class="language-plaintext highlighter-rouge">creme</code>:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">scikit-multiflow</code>: <a href="https://scikit-multiflow.github.io/">https://scikit-multiflow.github.io/</a></li>
+  <li><code class="language-plaintext highlighter-rouge">creme</code>: <a href="https://github.com/MaxHalford/creme">https://github.com/MaxHalford/creme</a></li>
+</ul>
+
+<p>In order to cite <code class="language-plaintext highlighter-rouge">scikit-multiflow</code> or <code class="language-plaintext highlighter-rouge">creme</code>, you can refer to the associated JMLR paper and the Github repository, as follows:</p>
+
+<div class="language-bibtex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">@article</span><span class="p">{</span><span class="nl">skmultiflow</span><span class="p">,</span>
+  <span class="na">author</span>  <span class="p">=</span> <span class="s">{Jacob Montiel and Jesse Read and Albert Bifet and Talel Abdessalem}</span><span class="p">,</span>
+  <span class="na">title</span>   <span class="p">=</span> <span class="s">{Scikit-Multiflow: A Multi-output Streaming Framework }</span><span class="p">,</span>
+  <span class="na">journal</span> <span class="p">=</span> <span class="s">{Journal of Machine Learning Research}</span><span class="p">,</span>
+  <span class="na">year</span>    <span class="p">=</span> <span class="s">{2018}</span><span class="p">,</span>
+  <span class="na">volume</span>  <span class="p">=</span> <span class="s">{19}</span><span class="p">,</span>
+  <span class="na">number</span>  <span class="p">=</span> <span class="s">{72}</span><span class="p">,</span>
+  <span class="na">pages</span>   <span class="p">=</span> <span class="s">{1-5}</span><span class="p">,</span>
+  <span class="na">url</span>     <span class="p">=</span> <span class="s">{http://jmlr.org/papers/v19/18-251.html}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>and</p>
+
+<div class="language-bibtex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">@software</span><span class="p">{</span><span class="nl">creme</span><span class="p">,</span>
+  <span class="na">title</span> <span class="p">=</span> <span class="s">{creme, a Python library for online machine learning}</span><span class="p">,</span>
+  <span class="na">author</span> <span class="p">=</span> <span class="s">{Halford, Max and Bolmier, Geoffrey and Sourty, Raphael and Vaysse, Robin and Zouitine, Adil}</span><span class="p">,</span>
+  <span class="na">url</span> <span class="p">=</span> <span class="s">{https://github.com/MaxHalford/creme}</span><span class="p">,</span>
+  <span class="na">version</span> <span class="p">=</span> <span class="s">{0.6.1}</span><span class="p">,</span>
+  <span class="na">date</span> <span class="p">=</span> <span class="s">{2020-06-10}</span><span class="p">,</span>
+  <span class="na">year</span> <span class="p">=</span> <span class="s">{2019}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h1 id="source-code-and-demos">Source code and demos</h1>
+
+<p>The source code for the demo of <code class="language-plaintext highlighter-rouge">River</code> can be found <a href="https://github.com/hoanganhngo610/river-clustering-demo-2022">here</a>.</p>
+
+<p>The benchmarking of <code class="language-plaintext highlighter-rouge">River</code> clustering algorithms are conducted locally, and can be executed using <a href="https://github.com/hoanganhngo610/river-clustering-benchmark">this repository</a>.</p>
+
+<h1 id="presentation-slides-and-videos">Presentation slides and videos</h1>
+
+<p>The complete slide deck of Part 1 and 2 of the tutorial, in PDF, can be found <a href="https://bit.ly/KDD2022-Tutorial-OnlineClustering-Slides">here</a>.</p>
+
+<p>The complete video of the on-site tutorial will be made available by the organizers, tentatively when the conference is officially over.</p>
+
+<p>In September 2022, Hoang-Anh Ngo also gave an invited talk in a seminar organized at LIAAD, INSEC TEC, University of Porto related to <code class="language-plaintext highlighter-rouge">River</code> and the clustering module. The slides of the talk can be found <a href="https://drive.google.com/file/d/1RWXdTxGzW6CkvY3TmBZuO8F8rIItUR_K/view?usp=sharing">here</a>, or <a href="https://github.com/hoanganhngo610/river-clustering-demo-2022/tree/master/slides/INESC%20TEC%20-%20Hoang-Anh%20Ngo%20-%20September%202022">within the GitHub repository for the demo of <code class="language-plaintext highlighter-rouge">River</code></a>.</p>
+
+
+      <footer class="site-footer">
+        
+          <span class="site-footer-owner"><a href="https://github.com/hoanganhngo610/deep-river.ecml-pkdd.2023">This tutorial's website</a> is maintained by <a href="https://github.com/hoanganhngo610">Hoang Anh Ngo</a>.</span>
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>
