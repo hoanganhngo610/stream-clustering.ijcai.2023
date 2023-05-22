@@ -31,13 +31,13 @@ Last but not least, the tutorial will demonstrate the use of `River` and the ass
 
 # Two-sentence tutorial description 
 
-*to be included into the conference registration brochure*
+*(to be included into the conference registration brochure)*
 
 This tutorial provides an in-depth survey to online (data stream) machine learning, with an emphasis on fairness and interpretability, which is then later put into a practical context with \texttt{River}, a go-to Python library for the task. Moreover, data stream clustering problems will also be further rigorously investigated by mentioning state-of-the-art-algorithms, solutions for the implementation of incremental clustering validity indices, associated core research approaches, and future directions.
 
 # Two-paragraph tutorial description
 
-*suitable for a web page overview, as per requested by the Call for Tutorials from IJCAI 23*
+*(suitable for a web page overview, as per requested by the Call for Tutorials from IJCAI 23)*
 
 With significant advantages upon run time, resource usage, and complexity, online machine learning and stream clustering algorithms are playing a critical role in data science. Besides substantial resource advantages, these algorithms achieve a comparable performance to traditional batch machine learning methods. As such, the first part of this tutorial is devoted as a literature survey into the field, including a strong emphasis on fairness and interpretability, which is then put into a practical context with `River`, a go-to Python library resulted from a merge between `Creme` and `scikit-multiflow`.
 
