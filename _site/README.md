@@ -1,6 +1,6 @@
 # Introduction
 
-This repository serves as the official website for the tutorial "Opportunities and Challenges for Online Deep Learning", presented at the European Conferenece on Machine Learning and Principles and Practice of Knowledge Discovery in Databases (ECML-PKDD) 2022, at [this site](https://hoanganhngo610.github.io/deep-river.ecml-pkdd.2023/).
+This repository serves as the official website for the tutorial "The State-of-the-Art and Challenges of Data Stream Clustering Algorithms in Practice", presented at the International Joint Conference on Artificial Intelligence (IJCAI) 2023, at [this site](https://hoanganhngo610.github.io/stream-clustering.ijcai.2023/).
 
 This website is generated using Github Pages, using The Cayman theme.
 
