@@ -83,6 +83,10 @@ The following authors will be in-person presenters, i.e., tutors who will attend
 
 His research interests are in the field of machine learning for evolving data streams. Prior to focusing on research, Jacob led the development work for onboard software for aircraft and engine’s prognostics at GE Aviation; working in the development of GE’s Brilliant Machines, part of the IoT and GE’s approach to Industrial Big Data.
 
+*Website:* [https://jacobmontiel.github.io/](https://jacobmontiel.github.io/)
+
+*Google Scholar profile:* [Jacob Montiel](https://scholar.google.com/citations?user=WOvISekAAAAJ&hl=en)
+
 <br clear="left"/>
 
 <img src="presenter-pics/hoang-anh.ngo.jpg" alt="drawing" width="220" style="border-radius:60%"/>{: .image-left } 
@@ -91,11 +95,15 @@ His research interests are in the field of machine learning for evolving data st
 
 His research interests lies in the field of machine learning for evolving data stream, particularly in online clustering and classification algorithms. Previously, he joined the team of IT Specialists in COVID-19 task force, formed by the Ministry of Health of Vietnam as a Epidemiological Modelling Unit head.
 
+*Google Scholar profile:* [Hoang-Anh Ngo](https://scholar.google.com/citations?user=yelTvHAAAAAJ&hl=en)
+
 <br clear="left"/>
 
 <img src="presenter-pics/minh-huong.le-nguyen.jpg" alt="drawing" width="220" style="border-radius:60%"/>{: .image-left } 
 
 **Minh-Huong Le-Nguyen** is a third-year doctoral student at LCTI, Télécom Paris, Institut Polytechnique de Paris in France. Her doctoral research focuses on the applications of machine learning on data streams to implement predictive maintenance in the railway industry. She received her Bachelor’s degree in Computer Science at University Pierre and Marie Curie (France) in 2013, then she graduated from Télécom Paris with a Master’s degree in Data Science in 2019.
+
+*ResearchGate profile:* [Minh-Huong Le-Nguyen](https://www.researchgate.net/profile/Minh-Huong-Le-Nguyen)
 
 <br clear="left"/>
 
@@ -103,21 +111,17 @@ His research interests lies in the field of machine learning for evolving data s
 
 **Albert Bifet** is a Professor of AI and the DIrector of the Te Ipu o te Mahara AI Institute  at University of Waikato, and Professor of Big Data at Data, Intelligence and Graphs (DIG) LTCI, Télécom Paris. Problems he investigate are motivated by large scale data, the Internet of Things (IoT), and Big Data Science. He co-leads the open source projects MOA (Massive On-line Analysis), Apache SAMOA (Scalable Advanced Massive Online Analysis) and StreamDM.
 
-Website: [https://albertbifet.com/](https://albertbifet.com/)
+*Website:* [https://albertbifet.com/](https://albertbifet.com/)
+
+*Google Scholar profile:* [Albert Bifet](https://scholar.google.com/citations?user=UYvAL8EAAAAJ&hl=en)
 
 # Presenters' contact information
 
-### Cedric Kulbach
+### Jacob Montiel
 
-&nbsp; FZI Research Center for Information Technology, Karlsruhe, Germany
+&nbsp; AI Institute, University of Waikato, New Zealand and LCTI, Télécom Paris, Institut Polytechnique de Paris, Frnace
 
-&nbsp; Email: [kulbach@fzi.de](mailto:kulbach@fzi.de)
-
-### Lucas Cazzonelli
-
-&nbsp; FZI Research Center for Information Technology, Karlsruhe, Germany
-
-&nbsp; Email: [cazzonelli@fzi.de](mailto:cazzonelli@fzi.de)
+&nbsp; Email: [jmontiel@waikato.ac.nz](mailto:jmontiel@waikato.ac.nz)
 
 ### Hoang-Anh Ngo
 
@@ -144,7 +148,7 @@ The target audience of the tutorial includes any researchers and practitioners w
 
 Basic knowledge with the Python programming language would be necessary. Apart from that, there will be no particular requirements or prerequisites on previous experience on data stream learning. However, either experience with traditional machine learning frameworks (`scikit-learn`, `keras`, `pytorch`, etc.) or previous interactions with online machine learning packages/tools, for example `MOA` (in Java), `stream` in `R`, `scikit-multiflow`, `Creme` or `River` in Python, would be beneficial.
 
-For any developer who wants to contribute to `River` or use `River` to employ their own research work, a thorough understanding of `Git`, functionalities of `GitHub` (how to open a pull request, an issue, a discussion, Github Actions, etc.), code formatters in Python (`flake8`, `black`|, `isort`, etc.) would be necessary.
+For any developer who wants to contribute to `River` or use `River` to employ their own research work, a thorough understanding of `Git`, functionalities of `GitHub` (how to open a pull request, an issue, a discussion, Github Actions, etc.), code formatters in Python (`flake8`, `black`, `isort`, etc.) would be necessary.
 
 # Format and detailed schedule
 
@@ -257,6 +261,21 @@ The main differences of this tutorial compared to its previous versions are:
   - The tutorial will also introduce a starting solution to new research pathways in stream clustering algorithms:
     - Text clustering algorithms (despite the fact that previously, text clustering can be done with an indirect approach, using Term Frequency - Inverse Document Frequency (TF-IDF) \cite{rajaraman_ullman_2011} with an arbitrary numerical stream clustering algorithm;
     - Improvement in accuracy of calculating micro-clusters' centers and diameters using Welford's algorithm \cite{10.1007/978-3-642-51461-6_3} instead of cluster feature vectors.
+
+# Strategies to enhance audience and interactivity
+
+Since it is intended to be a mix between a lecture-style and a practical-style tutorial, the authors intend to imply various strategies to enhance interaction and interest, including:
+
+- Including various small Question and Answers sessions in the tutorial to enhance speaker - audience interaction, ideally once after every finished section;
+- Interactive quizzes or surveys (e.g. quizzes hosted on [kahoot](https://www.kahoot.it) will also be useful in attracting attendance and making the atmosphere more relaxed, while, at the same time, they can also make sure that the audience can understand the content conveyed;
+- Using interactive tools like Jupyter notebooks with `Holoviews` or `Plotly` to represent real-time results for the purpose of visualisation;
+- Switching presenters on-the-go, not necessarily after each section, will significantly increase attendees' attention towards the tutorial;
+- Instead of pre-filling all code snippets, a lot of tasks within the demo will be left blank so that users can try to have a practical experience with all parts, either within or after the tutorial. Having all tools, packages and frameworks open-source (including `River` and the associated demo repository) is also a plus in facilitating this practice.
+- Organizing small coding challenges or competitions. Since the main theme of the practical part of this tutorial is live visualisation and benchmarking, a certain level of competitiveness would create an energetic and enjoyable environment.
+
+# Ethical statement
+
+There are no ethical concerns related to the topic of this tutorial.
 
 # Related materials
 
