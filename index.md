@@ -45,33 +45,12 @@ Besides, we will also investigate the problem of data stream clustering rigorous
 
 # Motivation
 
-Having algorithms at hand that can process data that arrives continuously in the form of data streams is crucial. 
-Online Learning potentially has to deal with real-time data rather than previously known data sets. 
-To deal with the evaluation and application of models on data streams, Bifet et al. [5] defined the online learning requirements as follows:
-  - Process an instance at a time, and inspect it (at most) once.
-  - Use a limited amount of time to process each instance.
-  - Use a limited amount of memory.
-  - Be ready to give an answer (e.g. prediction) at any time
-  - Adapt to temporal changes.
+The motivations for this tutorial lie in the following points:
 
-The following figure depicts how an online learning framework is able to comply with the data stream requirements for supervised learning tasks. 
-The model processes labeled data points $\left(\overrightarrow{x},y\right)$ by updating the model while instead predicting a label $\hat{y}$ for each unlabeled instance $\overrightarrow{x}$. 
-Thus, the model processes each instance from an evolving data stream, updates the underlying model, and is ready to predict at any time. 
-
-Even until now, the development of stream algorithms is quite scattered and decentralized. Previously, algorithms were usually self-developed and maintained by the respective authors in various different programming languages, with none of the existing frameworks being widely adopted within the online learning community. Currently, `River` is becoming not only a go-to library for online machine learning tasks, but also a pioneer framework for the implementation of any new algorithm within the field.
-
-<figure>
-  <img src="./stream-structure.png" alt="stream-structure"/>
-  <figcaption><strong>Figure 1</strong>: Structure of the interaction between data stream and prediction model.</figcaption>
-</figure>
-
-A significant question in the context of the advancement of `River` is whether deep learning algorithms, which have been a staple in many batch learning frameworks for some time, can also fulfill the requirements and therefore be applied within online learning environments. To this end, we developed `deep-river` which combines the `River` API for online learning algorithms and `PyTorch` for the flexible development of neural architectures.
-Based on `River` and the newly developed framework `deep-river`, we present in this tutorial the chances and pitfalls for online deep learning by 
-- addressing the online learning requirements, 
-- the `River` API and discussing their 
-- applicability in deep learning architectures. 
-
-The tutorial will cover the transition from simple conventional machine learning models to sophisticated neural architectures while considering not only classification, regression and anomaly detection metrics, but also time and memory consumption which are key factors for the throughput of the underlying model.
+- `River`, an open-source Python library for online machine learning, has become more and more popular. Being well-maintained and constantly developed, it has not only been used in academic research but also in industrial applications by top tech companies (including Harman Kardon, Bee2Beep, Lyft, etc.).
+- Until now, the development of stream algorithms and truly incremental validity indices is quite scattered and uncentralized. Previously, algorithms are usually self-developed and self-maintained by the respective authors in various different programming languages, and a common framework is not available and widely known until `River` is generated. This causes a tremendous difficulty in testing and benchmarking currently available algorithms or facilitating further research/improvements. As such, we plan `River` to become not only a go-to library for any online machine learning task but also a pioneer framework for the implementation of any new algorithm within the field.
+- Compared to other sections of online machine learning, although being an extremely important task, stream clustering particularly seems to receive less notice with very few thorough literature surveys, and even fewer works related to practical applications.
+- Fairness and interpretability of online machine learning algorithms are of considerable importance, and significant efforts have also been put into the field, but they are not made widely aware of.
 
 # Presenters' bibliography
 
@@ -171,7 +150,7 @@ The tutorial is intended to be of **3.5 hours** (half-day, consisting of **two 1
     1. How to improve accuracy in calculating micro-cluster centers and diameters through time using Welford's algorithm.
     1. An investigation into currently available static validity indices, arising problems and motivation for the foundation of their truly incremental versions.
     1. A comparative survey on the expansion of incremental clustering validity indices, particularly among the most significant and widely used one that are adapted and integrated to `River`.
-    1. `textClust`, the first text clustering algorithm to be implemented in `River`.
+    1. `textClust` [Carnein *et al.*, 2017a], the first text clustering algorithm to be implemented in `River`.
     1. A brief introduction to research on fairness and interpretability of data stream clustering algorithms.
     1. Potential future research directions towards improvement in time and accuracy of stream clustering.
 1. Use cases and benchmarking (**45 minutes**):
@@ -198,8 +177,8 @@ This part will first start with an extensive survey on online clustering algorit
 
 With the emerging research on fairness and interpretability of AI, we will also discuss certain attempts in inducing a fair and interpretable stream clustering algorithm, including
 
-- The first attempts for a fair K-Means algorithm by Schmidt et al. (2018) \cite{DBLP:journals/corr/abs-1812-10854} or fair k-Center algorithm by Bera et al. (2022) \cite{10.1145/3485447.3512188} have been introduced.
-- Intepretable multiple data stream clustering with clipped stream representation has also been proposed by Laurinec and Lucká (2019) \cite{10.1007/s10618-018-0598-2}.
+- The first attempts for a fair K-Means algorithm by Schmidt et al. (2018) [Schmidt *et al.*, 2018] or fair k-Center algorithm by Bera et al. (2022) [Bera *et al.*, 2022] have been introduced.
+- Intepretable multiple data stream clustering with clipped stream representation has also been proposed by Laurinec and Lucká (2019) [Laurinec and Lucká, 2018].
 
 From this, we will discuss their effectiveness and later on how to apply these certain approaches for a broader family of clustering algorithms.
 
@@ -236,7 +215,7 @@ There has been two previous offerings of similar tutorials on the topic at highl
   - **Conference:** The 26th Pacific - Asia Conference on Knowledge Discovery and Data Mining (PAKDD 2022).
   - **Number of participants:**} Unknown. Due to the COVID-19 prevention measures and time differences, the tutorial is presented online with a pre-recorded video.    
 - Second offering:
-  - **Title:** Online Clustering: Online Clustering: Algorithms, Evaluation, Metrics, Applications and Benchmarking \cite{10.1145/3534678.3542600}.
+  - **Title:** Online Clustering: Online Clustering: Algorithms, Evaluation, Metrics, Applications and Benchmarking [Montiel *et al.*, 2022].
   - **Conference:** The 28th ACM SIGKDD Cofnerence on Knowledge Discovery and Data Mining (KDD '22).
   - **Content:** Publicly available within \href[the tutorial's website](https://hoanganhngo610.github.io/river-clustering.kdd.2022/) and [the conference's proceedings](https://dl.acm.org/doi/10.1145/3534678.3542600).
   - **Number of participants:** Approximately 50 participants.
@@ -259,8 +238,8 @@ The main differences of this tutorial compared to its previous versions are:
   - This tutorial will also be the first to analyze the implementation strategy of truly incremental clustering metrics in `River`, which are not available in any other online machine learning tools/packages.
   - Apart from providing a guidance on how to conduct benchmarking with `River`, preliminary results for comparison will also be provided. This work has just been completed recently and were not provided within any previous editions of this tutorial.
   - The tutorial will also introduce a starting solution to new research pathways in stream clustering algorithms:
-    - Text clustering algorithms (despite the fact that previously, text clustering can be done with an indirect approach, using Term Frequency - Inverse Document Frequency (TF-IDF) \cite{rajaraman_ullman_2011} with an arbitrary numerical stream clustering algorithm;
-    - Improvement in accuracy of calculating micro-clusters' centers and diameters using Welford's algorithm \cite{10.1007/978-3-642-51461-6_3} instead of cluster feature vectors.
+    - Text clustering algorithms (despite the fact that previously, text clustering can be done with an indirect approach, using Term Frequency - Inverse Document Frequency (TF-IDF) [Rajaraman and Ullman, 2011] with an arbitrary numerical stream clustering algorithm;
+    - Improvement in accuracy of calculating micro-clusters' centers and diameters using Welford's algorithm [Chan *et al.*, 1982] instead of cluster feature vectors.
 
 # Strategies to enhance audience and interactivity
 
@@ -287,42 +266,52 @@ TBA
 
 # References
 
-1. Martin Abadi, Andy Chu, Ian Goodfellow, H. Brendan McMahan, Ilya Mironov, Kunal Talwar, and Li Zhang. Deep Learning with Differential Privacy. In *Proceedings of the 2016 ACM SIGSAC Conference on Computer and Communications Security*, CCS ’16, pages 308–318, New York, NY, USA, October 2016. Association for Computing Machinery.
-1. Rahaf Aljundi, Lucas Caccia, Eugene Belilovsky, Massimo Caccia, Min Lin, Laurent Charlin, and Tinne Tuytelaars. Online Continual Learning with Maximally Interfered Retrieval, October 2019.
-1. Rahaf Aljundi, Min Lin, Baptiste Goujaud, and Yoshua Bengio. Gradient based sample selection for online continual learning, October 2019.
-1. Atilim Gunes Baydin, Robert Cornish, David Martínez-Rubio, Mark Schmidt, and Frank Wood. Online learning rate adaptation with hyper-gradient descent. In *6th international conference on learning representations, ICLR 2018, vancouver, BC, canada, april 30 - may 3, 2018, conference track proceedings*. OpenReview.net, 2018. tex.bibsource: dblp computer science bibliography, [https://dblp.org](https://dblp.org) tex.biburl: [https://dblp.org/rec/conf/iclr/BaydinCMSW18.bib](https://dblp.org/rec/conf/iclr/BaydinCMSW18.bib) tex.timestamp: Thu, 23 Apr 2020 11:53:22 +0200.
-1. Albert Bifet, Ricard Gavaldà, Geoff Holmes, and Bernhard Pfahringer. *Machine Learning for Data Streams with Practical Examples in MOA*. MIT Press, 2018.
-1. Nadia Burkart and Marco F. Huber. A Survey on the Explainability of Supervised Machine Learning. *Journal of Artificial Intelligence Research*, 70:245–317, January 2021.
-1. Pietro Buzzega, Matteo Boschini, Angelo Porrello, Davide Abati, and Simone Calderara. Dark Experience for General Continual Learning: A Strong, Simple Baseline, October 2020.
-1. Nicholas Carlini and David Wagner. Towards Evaluating the Robustness of Neural Networks. In *2017 IEEE Symposium on Security and Privacy (SP)*, pages 39–57, May 2017.
-1. Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. In *Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)*, pages 4171–4186, Minneapolis, Minnesota, June 2019. Association for Computational Linguistics.
-1. João Gama, Pedro Medas, Gladys Castillo, and Pedro Rodrigues. Learning with drift detection. In Ana L. C. Bazzan and Sofiane Labidi, editors, *Advances in Artificial Intelligence – SBIA 2004*, pages 286–295, Berlin, Heidelberg, 2004. Springer Berlin Heidelberg.
-1. Heitor Murilo Gomes, Jesse Read, and Albert Bifet. Streaming random patches for evolving data stream classification. In *2019 IEEE International Conference on Data Mining (ICDM)*, pages 240–249, 2019.
-1. Heitor Murilo Gomes, Jesse Read, Albert Bifet, Jean Paul Barddal, and João Gama. Machine learning for streaming data: State of the art, challenges, and opportunities. *SIGKDD Explor. Newsl.*, 21(2):6–22, nov 2019.
-1. Max Halford, Geoffrey Bolmier, Raphael Sourty, Robin Vaysse, and Adil Zouitine. creme, a Python library for online machine learning, 2019.
-1. Kaiming He, Xinlei Chen, Saining Xie, Yanghao Li, Piotr Dollar, and Ross Girshick. Masked Autoencoders Are Scalable Vision Learners. In *2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)*, pages 15979–15988, New Orleans, LA, USA, June 2022. IEEE.
-1. Steven C. H. Hoi, Doyen Sahoo, Jing Lu, and Peilin Zhao. Online Learning: A Comprehensive Survey, October 2018.
-1. Kurt Hornik, Maxwell Stinchcombe, and Halbert White. Multilayer feedforward networks are universal approximators. *Neural Networks*, 2(5):359–366, January 1989.
-1. Lakhmi C. Jain, Manjeevan Seera, Chee Peng Lim, and P. Balasubramaniam. A review of online learning in supervised neural networks. *Neural Computing and Applications*, 25(3-4):491–509, September 2014.
-1. James Kirkpatrick, Razvan Pascanu, Neil Rabinowitz, Joel Veness, Guillaume Desjardins, Andrei A. Rusu, Kieran Milan, John Quan, Tiago Ramalho, Agnieszka Grabska-Barwinska, Demis Hassabis, Claudia Clopath, Dharshan Kumaran, and Raia Hadsell. Overcoming catastrophic forgetting in neural networks. *Proceedings of the National Academy of Sciences*, 114(13):3521–3526, March 2017.
-1. Alex Krizhevsky, Ilya Sutskever, and Geoffrey E Hinton. ImageNet Classification with Deep Convolutional Neural Networks. In *Advances in Neural Information Processing Systems*, volume 25. Curran Associates, Inc., 2012.
-1. Zhizhong Li and Derek Hoiem. Learning without Forgetting. *IEEE Transactions on Pattern Analysis and Machine Intelligence*, 40(12):2935–2947, December 2018.
-1. Jesus L Lobo, Javier Del Ser, Albert Bifet, and Nikola Kasabov. Spiking neural networks and online learning: An overview and perspectives. *Neural Networks*, 121:88–100, 2020. Publisher: Elsevier.
-1. Scott Lundberg and Su-In Lee. A Unified Approach to Interpreting Model Predictions, November 2017.
-1. Aleksander Madry, Aleksandar Makelov, Ludwig Schmidt, Dimitris Tsipras, and Adrian Vladu. Towards Deep Learning Models Resistant to Adversarial Attacks, September 2019.
-1. Michael McCloskey and Neal J. Cohen. Catastrophic Interference in Connectionist Networks: The Sequential Learning Problem. In *Psychology of Learning and Motivation*, volume 24, pages 109–165. Elsevier, 1989.
-1. Jacob Montiel, Jesse Read, Albert Bifet, and Talel Abdessalem. Scikit-multiflow: A multi-output streaming framework. *Journal of Machine Learning Research*, 19(72):1–5, 2018.
-1. Jacob Montiel, Max Halford, Saulo Martiello Mastelini, Geoffrey Bolmier, Raphael Sourty, Robin Vaysse, Adil Zouitine, Heitor Murilo Gomes, Jesse Read, Talel Abdessalem, and Albert Bifet. River: machine learning for streaming data in python. *Journal of Machine Learning Research*, 22:1–8, April 2021. 
-1. Jacob Montiel, Hoang-Anh Ngo, Minh-Huong Le-Nguyen, and Albert Bifet. Online clustering: Algorithms, evaluation, metrics, applications and benchmarking. In *Proceedings of the 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining*, KDD ’22, page 4808–4809, New York, NY, USA, 2022. Association for Computing Machinery. 
-1. Jordan Pearson and Yoshua Bengio. When AI Goes Wrong, We Won’t Be Able to Ask It Why, July 2016. 
-1. Anand Rajaraman and Jeffrey David Ullman. *Data Mining*, page 1–17. Cambridge University Press, 2011. 
-1. Marco Tulio Ribeiro, Sameer Singh, and Carlos Guestrin. ”Why Should I Trust You?”: Explaining the Predictions of Any Classifier, August 2016. 
-1. David E. Rumelhart, Geoffrey E. Hinton, and Ronald J. Williams. Learning representations by back-propagating errors. *Nature*, 323(6088):533–536, October 1986. 
-1. Doyen Sahoo, Quang Pham, Jing Lu, and Steven C. H. Hoi. Online Deep Learning: Learning Deep Neural Networks on the Fly. In *IJCAI Proceedings*, pages 2660–2666, Stockholm, Sweden, July 2018. International Joint Conferences on Artificial Intelligence Organization. 
-1. Sheng Wan and L.E. Banta. Parameter Incremental Learning Algorithm for Neural Networks. IEEE *Transactions on Neural Networks*, 17(6):1424–1438, November 2006. 
-1. Jonathan A. Silva, Elaine R. Faria, Rodrigo C. Barros, Eduardo R. Hruschka, Andr ́e C. P. L. F. de Carvalho, and João Gama. Data stream clustering: A survey. *ACM Comput. Surv.*, 46(1), jul 2013. 
-1. David Silver, Aja Huang, Chris J. Maddison, Arthur Guez, Laurent Sifre, George van den Driessche, Julian Schrittwieser, Ioannis Antonoglou, Veda Panneershelvam, Marc Lanctot, Sander Dieleman, Dominik Grewe, John Nham, Nal Kalchbrenner, Ilya Sutskever, Timothy Lillicrap, Madeleine Leach, Koray Kavukcuoglu, Thore Graepel, and Demis Hassabis. Mastering the game of Go with deep neural networks and tree search. *Nature*, 529(7587):484–489, January 2016. 
-1. Christian Szegedy, Wojciech Zaremba, Ilya Sutskever, Joan Bruna, Dumitru Erhan, Ian Goodfellow, and Rob Fergus. Intriguing properties of neural networks, February 2014. 
-1. Vladimir Vapnik. *The Nature of Statistical Learning Theory*. Springer Science & Business Media, November 1999. 
-1. Pascal Vincent, Hugo Larochelle, Isabelle Lajoie, Yoshua Bengio, and Pierre-Antoine Manzagol. Stacked Denoising Autoencoders: Learning Useful Representations in a Deep Network with a Local Denoising Criterion. *Journal of Machine Learning Research*, page 38, 2010.
-1. Guanyu Zhou, Kihyuk Sohn, and Honglak Lee. Online Incremental Feature Learning with Denoising Autoencoders. In *AISTATS Proceedings*, 2012.
+[Ackermann et al., 2012] Marcel R. Ackermann, Marcus Martens, Christoph Raupach, Kamil Swierkot, Christiane  Lammersen, and Christian Sohler. Streamkm++: A clustering algorithm for data streams. *ACM J. Exp. Algorithmics*, 17, May 2012. 
+
+[Aggarwal and Reddy, 2016] Charu C. Aggarwal and Chandan K. Reddy. *Data Clustering Algorithms and Applications*. Chapman and Hall/CRC, 2016. 
+
+[Aggarwal et al., 2003] Charu C. Aggarwal, Jiawei Han, Jianyong Wang, and Phillip S. Yu. A framework for clustering evolving data streams. In *Proceedings of the 29th International Conference on Very Large Data Bases - Volume 29*, VLDB ’03, pages 81–92, Berlin, Germany, 2003. VLDB Endowment. 
+
+[Amini et al., 2014] Amineh Amini, Teh Ying Wah, and Hadi Saboohi. On density-based data streams clustering algorithms: A survey. *Journal of Computer Science and Technology*, 29(1):116–141, January 2014. 
+
+[Bera et al., 2022] Suman K. Bera, Syamantak Das, Sainyam Galhotra, and Sagar Sudhir Kale. Fair k-center clustering in mapreduce and streaming settings. In *Proceedings of the ACM Web Conference 2022*, WWW ’22, page 1414–1422, New York, NY, USA, 2022. Association for Computing Machinery. 
+
+[Bifet et al., 2018] Albert Bifet, Ricard Gavald`a, Geoff Holmes, and Bernhard Pfahringer. *Machine Learning for Data Streams: with Practical Examples in MOA*. The MIT Press, Cambridge, MA, USA, 2018.
+
+[Cao et al., 2006] Feng Cao, Martin Estert, Weining Qian, and Aoying Zhou. Density-based clustering over an evolving data stream with noise. In *Proceedings of the 2006 SIAM International Conference on Data Mining (SDM)*, pages 328–339, Philadelphia, PA, USA, 2006. Society for Industrial and Applied Mathematics (SIAM).
+
+[Carnein and Trautmann, 2019] Matthias Carnein and Heike Trautmann. Optimizing data stream representation: An extensive survey on stream clustering algorithms. *Business & Information Systems Engineering*, 61:277–297, 2019.
+
+[Carnein et al., 2017a] Matthias Carnein, Dennis Assenmacher, and Heike Trautmann. Stream clustering of chat messages with applications to twitch streams. In *Proceedings of the 36th International Conference on Conceptual Modeling (ER ’17)*, pages 79–88. Springer International Publishing, 2017.
+
+[Carnein et al., 2017b] Matthias Carnein, Assenmacher Dennis, and Heike Trautmann. An empirical comparison of stream clustering algorithms. In *Proceedings of the Computing Frontiers Conference, CF’17*, pages 361––366, New York, NY, USA, 2017. Association for Computing Machinery.
+
+[Chan et al., 1982] T.F. Chan, G. H. Golub, and R. J. LeVeque. Updating formulae and a pairwise algorithm for computing sample variances. In *COMSTATS 1982 5th Symposium*. Physica, Heidenberg, 1982.
+
+[Chen and Tu, 2007] Yixin Chen and Li Tu. Density-based clustering for real-time stream data. In *Proceedings of the 13th ACM SIGKKDD internaional conference on Knowledge discovery and data mining*, KDD ’07, pages 133–142, New York, NY, USA, August 2007. Association for Computing Machinery.
+
+[Ghesmoune et al., 2016] Mohammed Ghesmoune, Mustapha Lebbah, and Hanene Azzag. State-of-the-art on clustering data streams. *Big Data Analytics*, 1(1):13, 2016.
+
+[Halford et al., 2019] Max Halford, Geoffrey Bolmier, Raphael Sourty, Robin Vaysse, and Adil Zouitine. `creme`, a Python library for online machine learning, 2019.
+
+[Hashler and Bolanos, 2016] Michael Hashler and MatthewBolanos. Clustering data streams based on shared density between micro-clusters. *IEEE Transactions on Knowledge and Data Engineering*, 28(6):1449–1461, 2016.
+
+[Javed et al., 2020] Ali Javed, Byung Suk Lee, and Donna M. Rizzo. A benchmark study on time series clustering. *Machine Learning with Applications*, 1:100001, September 2020.
+
+[Laurinec and Lucká, 2018] Peter Laurinec and Mária Lucká. Interpretable multiple data streams clustering with clipped streams representation for the improvement of electricity consumption forecasting. *Data Mining and Knowledge Discovery*, 33:413–445, 2018.
+
+[Mansalis et al., 2018] Stratos Mansalis, Eirini Ntoutsi, Nikos Pelekis, and Yannis Theodoridis. An evaluation of data stream clustering algorithm. *Statistical Analysis and Data Mining: The ASA Data Science Journal*, 11:167–187, 2018.
+
+[Montiel et al., 2018] Jacob Montiel, Jesse Read, Albert Bifet, and Talel Abdessalem. Scikit-multiflow: A multi-output streaming framework. *Journal of Machine Learning Research*, 19(72):1–5, 2018.
+
+[Montiel et al., 2021] Jacob Montiel, Max Halford, Saulo Martiello Mastelini, Geoffrey Bolmier, Raphael Sourty, Robin Vaysse, Adil Zouitine, Heitor Murilo Gomes, Jesse Read, Talel Abdessalem, and Albert Bifet. River: machine learning for streaming data in python. *Journal of Machine Learning Research*, 22:1–8, April 2021.
+
+[Montiel et al., 2022] Jacob Montiel, Hoang-Anh Ngo, Minh-Huong Le-Nguyen, and Albert Bifet. Online clustering: Algorithms, evaluation, metrics, applications and benchmarking. In *Proceedings of the 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining*, KDD ’22, page 4808–4809, New York, NY, USA, 2022. Association for Computing Machinery.
+
+[O’Callaghan et al., 2002] L. O’Callaghan, N. Mishra, A. Meyerson, S. Guha, and R. Motwani. Streaming-data algorithms for high-quality clustering. In *Proceedings 18th International Conference on Data Engineering*, pages 685–694, San Jose, CA, USA, August 2002. IEEE. 
+
+[Rajaraman and Ullman, 2011] Anand Rajaraman and Jeffrey David Ullman. *Data Mining*, page 1–17. Cambridge University Press, 2011.
+
+[Schmidt et al., 2018] Melanie Schmidt, Chris Schwiegelshohn, and Christian Sohler. Fair coresets and streaming algorithms for fair k-means clustering. CoRR, abs/1812.10854, 2018. 
+
+[Silva et al., 2020] Leonardo Enzo Brito Da Silva, Niklas Max Melton, and Donald C. Wunsch. Incremental cluster validity indices for online learning of hard partitions: Extensions and comparative study. *IEEE Access*, 8:22025–22047, January 2020. 
