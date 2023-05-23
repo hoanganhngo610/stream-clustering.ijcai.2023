@@ -144,7 +144,7 @@ The tutorial is intended to be of **3.5 hours** (half-day, consisting of **two 1
         1. Major updates/improvements throughout the versions.
     1. A brief guidance on how to develop/implement a model within `River`, along with demo and examples of past problems and solutions within the development process.
     1. Future maintenance and development orientation for `River`.
-1. Online clustering algorithms and evaluation metrics (`1 hour 15 minutes`):
+1. Online clustering algorithms and evaluation metrics (**1 hour 15 minutes**):
     1. A literature survey on existing clustering algorithms, the general concepts, approaches and their evolution.
     1. Introduction to the state-of-the-art clustering algorithms implemented in `River` and their potential differences or advantages compared to previously implemented versions.
     1. How to improve accuracy in calculating micro-cluster centers and diameters through time using Welford's algorithm.
