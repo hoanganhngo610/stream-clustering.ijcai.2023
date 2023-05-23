@@ -217,7 +217,7 @@ There has been two previous offerings of similar tutorials on the topic at highl
 - Second offering:
   - **Title:** Online Clustering: Online Clustering: Algorithms, Evaluation, Metrics, Applications and Benchmarking [Montiel *et al.*, 2022].
   - **Conference:** The 28th ACM SIGKDD Cofnerence on Knowledge Discovery and Data Mining (KDD '22).
-  - **Content:** Publicly available within \href[the tutorial's website](https://hoanganhngo610.github.io/river-clustering.kdd.2022/) and [the conference's proceedings](https://dl.acm.org/doi/10.1145/3534678.3542600).
+  - **Content:** Publicly available within [the tutorial's website](https://hoanganhngo610.github.io/river-clustering.kdd.2022/) and [the conference's proceedings](https://dl.acm.org/doi/10.1145/3534678.3542600).
   - **Number of participants:** Approximately 50 participants.
 
 ## Relationship to previous editions
