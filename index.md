@@ -18,8 +18,8 @@ mathjax: true
 
 The agenda of the tutorial will be as follows:
 
-* **Place**: Polytechnico di Torino
-* **Time**: Friday, September 22<sup>nd</sup> 2023, afternoon (GMT+1)
+* **Place**: **Sheraton Grand Macao**, The Londoner Macao, Estrada do Istmo, Cotai Macao, China
+* **Time**: August 20<sup>th</sup> 2023, afternoon (GMT+8)
 
 # Abstract
 
