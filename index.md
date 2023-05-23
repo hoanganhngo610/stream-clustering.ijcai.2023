@@ -33,7 +33,7 @@ Last but not least, the tutorial will demonstrate the use of `River` and the ass
 
 *(to be included into the conference registration brochure)*
 
-This tutorial provides an in-depth survey to online (data stream) machine learning, with an emphasis on fairness and interpretability, which is then later put into a practical context with \texttt{River}, a go-to Python library for the task. Moreover, data stream clustering problems will also be further rigorously investigated by mentioning state-of-the-art-algorithms, solutions for the implementation of incremental clustering validity indices, associated core research approaches, and future directions.
+This tutorial provides an in-depth survey to online (data stream) machine learning, with an emphasis on fairness and interpretability, which is then later put into a practical context with `River`, a go-to Python library for the task. Moreover, data stream clustering problems will also be further rigorously investigated by mentioning state-of-the-art-algorithms, solutions for the implementation of incremental clustering validity indices, associated core research approaches, and future directions.
 
 # Two-paragraph tutorial description
 
@@ -213,7 +213,7 @@ There has been two previous offerings of similar tutorials on the topic at highl
 - First offering:
   - **Title:** Online Clustering: Algorithms, Evaluation, Metrics, Applications and Benchmarking using `River`.
   - **Conference:** The 26th Pacific - Asia Conference on Knowledge Discovery and Data Mining (PAKDD 2022).
-  - **Number of participants:**} Unknown. Due to the COVID-19 prevention measures and time differences, the tutorial is presented online with a pre-recorded video.    
+  - **Number of participants:** Unknown. Due to the COVID-19 prevention measures and time differences, the tutorial is presented online with a pre-recorded video.    
 - Second offering:
   - **Title:** Online Clustering: Online Clustering: Algorithms, Evaluation, Metrics, Applications and Benchmarking [Montiel *et al.*, 2022].
   - **Conference:** The 28th ACM SIGKDD Cofnerence on Knowledge Discovery and Data Mining (KDD '22).
